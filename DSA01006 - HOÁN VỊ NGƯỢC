@@ -1,0 +1,54 @@
+// HOÁN VỊ NGƯỢC
+
+#include <iostream>
+using namespace std;
+
+int a[10000], n;
+
+void result() {
+    for (int i = n; i > 0; i--) cout << a[i];  
+    cout << " ";  
+}
+
+void init() {
+    for (int i = 1; i <= n; i++) a[i] = i;
+}
+
+void solve() {
+    init();
+    while (true) {
+        result();
+        
+        int i = 2;
+        while (i <= n && a[i] <= a[i - 1]) i++; 
+        
+        if (i > n ) return; 
+        
+        int j = 1; 
+        while(a[j] > a[i]) j++;
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+		
+		int l = 1, r = i - 1;
+		while(l < r){
+			temp = a[l];
+			a[l] = a[r];
+			a[r] = temp;
+			l++; r--;
+		}
+    }
+}
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        cin >> n;
+        solve();
+        cout << endl; 
+    }
+    
+    return 0;
+}
