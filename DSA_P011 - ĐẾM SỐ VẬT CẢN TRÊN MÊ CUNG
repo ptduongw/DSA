@@ -1,0 +1,44 @@
+// ĐẾM SỐ VẬT CẢN TRÊN MÊ CUNG
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+void process(vector<vector<char> >& a, int i, int j){
+	if(a[i][j - 1] == '#'){
+		a[i][j - 1] = '.';
+		process(a, i, j - 1);
+	}
+	if(a[i][j + 1] == '#'){
+		a[i][j + 1] = '.';
+		process(a, i, j + 1);
+	}
+	if(a[i - 1][j] == '#'){
+		a[i - 1][j] = '.';
+		process(a, i - 1, j);
+	}
+	if(a[i + 1][j] == '#'){
+		a[i + 1][j] = '.';
+		process(a, i + 1, j);
+	}
+} 
+int main(){
+	int n, m;
+	cin >> n >> m;
+	
+	vector < vector <char> > a(n + 2, vector<char> (m + 2, '.'));
+	for(int i = 1; i<= n; i++)
+	    for(int j = 1; j <= m; j++)
+	        cin >> a[i][j];
+	
+	int cnt = 0;
+	for(int i = 1; i<= n; i++)
+	    for(int j = 1; j <= m; j++)
+	        if(a[i][j] == '#'){
+	        	a[i][j] = '.';
+	        	process(a, i, j);
+	        	cnt++;
+			}
+	cout << cnt;
+ }
