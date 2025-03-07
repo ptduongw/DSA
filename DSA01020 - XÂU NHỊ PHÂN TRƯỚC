@@ -1,0 +1,25 @@
+// XÂU NHỊ PHÂN TRƯỚC
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int main(){
+	int t;
+	cin >> t;
+	
+	while(t--){
+		string s;
+		cin >> s;
+		
+		int l = s.size() - 1;
+		while(l >= 0){
+			if(s[l] == '1') break;
+			s[l] = '1';
+			l--;
+		}
+		if(l >= 0) s[l] = '0';
+		cout << s << endl;
+	}
+ }
