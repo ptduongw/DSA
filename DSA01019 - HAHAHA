@@ -1,0 +1,41 @@
+// HAHAHA
+
+#include <iostream>
+using namespace std;
+
+int a[10000] ={0}, n, cnt;
+
+void backtrack(int n, int pos) {
+    if(pos > n ){
+	    int check = 1; 
+    	for(int i = 1; i <= n; i++)
+		    if(a[i] == '1' && a[i + 1] == '1') check = 0;;
+		if(a[1] == '0' || a[n] == '1') check = 0;   
+
+		if(check){
+		    for(int i = 1; i <= n; i++) 
+		        if(a[i] == '0') cout << "A";
+		            else cout << "H";
+         	cout << endl;
+        }
+        return;
+	}
+
+    for(int j = '0'; j <= '1'; j++){
+    	a[pos] = j;
+    	backtrack(n, pos + 1);
+	}    
+}
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        cin >> n;
+        backtrack(n, 1);
+        cout << endl; 
+    }
+    
+    return 0;
+}
