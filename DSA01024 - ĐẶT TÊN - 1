@@ -1,0 +1,39 @@
+// ĐẶT TÊN - 1
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k;
+vector<string> chosen;
+vector<string> names;
+
+void generate(int pos, int cnt){
+	if(cnt == k){
+		for(int i = 0; i < k; i++)
+		    cout << chosen[i] << " ";
+		cout << endl;
+		return;
+	}
+	
+	for(int i = pos; i < n; i++){
+		chosen[cnt] = names[i];
+		generate(i + 1, cnt + 1);
+	}
+} 
+int main(){
+	cin >> n >> k;
+	set<string> unique_names;
+	
+	for(int i = 0; i < n; i++){
+		string name;
+		cin >> name;
+		unique_names.insert(name);
+	}
+	names.assign(unique_names.begin(), unique_names.end());
+	n = names.size();
+	sort(names.begin(), names.end());
+	
+	chosen.resize(k);
+	generate(0, 0);
+} 
