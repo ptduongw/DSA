@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<string> gray(int n){
+	vector<string> res;
+	res.push_back("0");
+	res.push_back("1");
+	
+	for(int i = 2; i <= n; i++){
+		vector<string> temp;
+		for(int j = 0; j < res.size(); j++){
+			temp.push_back("0" + res[j]);
+			cout << '0' + res[j] << " ";
+		} 
+		cout << endl;
+		
+		for(int j = res.size() - 1; j >= 0; j--){
+			temp.push_back("1" + res[j]);
+			cout << '1' + res[j] << " ";
+		}
+		cout << endl;
+		    
+		res = temp;
+	}
+	return res;
+}
+
+int main(){
+	int t, n;
+	cin >> t;
+	
+	while(t--){
+		cin >> n;
+		vector<string> g = gray(n);
+		
+		for(string s : g) cout << s << " ";
+		cout << endl;
+	}
+}
