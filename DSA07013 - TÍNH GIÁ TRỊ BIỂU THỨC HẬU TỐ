@@ -1,0 +1,41 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+bool check(char c) {
+    return (c == '+' || c == '-' || c == '*' || c == '/');
+}
+
+string solve(const string& S) {
+    stack<string> s;
+
+    for (int i = S.length() - 1; i >= 0; i--) {
+        char c = S[i];
+
+        if (check(c)) {
+            string op1 = s.top(); s.pop();
+            string op2 = s.top(); s.pop();
+            string tmp = op1 + op2 + c;
+            s.push(tmp);
+        } else {
+
+            s.push(string(1, c));
+        }
+    }
+
+    return s.top();
+}
+
+int main() {
+    int T;
+    cin >> T;
+    cin.ignore(); 
+    while (T--) {
+        string s;
+        getline(cin, s);
+        cout << solve(s) << endl;
+    }
+    return 0;
+}
+
