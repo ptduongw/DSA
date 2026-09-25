@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k, a[20];
+
+void in(){
+	for(int i = 1; i <= n; i++)
+	    if(a[i]) cout << "8";
+		    else cout << "6"; 
+	cout << endl;
+}
+
+void Try(int i){
+	for(int j = 0; j <= 1; j++){
+		a[i] = j;
+		if(i == n - 1){
+			int check = 1, cnt6 = 0, cnt8 = 0; 
+			for(int p = 1; p <= n; p++){
+				if(a[p] == 0){
+					cnt6++;
+					cnt8 = 0; 
+				} else{
+					cnt8++;
+					cnt6 = 0; 
+				} 
+				if(cnt6 > 3 || cnt8 > 1) check = 0; 
+			}
+			    	        
+			if(check) in();
+		}
+		else Try(i + 1);
+	}
+}
+
+int main(){
+	cin >> n;
+	a[1] = 1;
+	a[2] = 0; 
+	a[n] = 0; 
+	Try(3); 
+}
