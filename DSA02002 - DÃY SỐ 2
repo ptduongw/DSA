@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        int n;
+        cin >> n;
+        vector<vector<int>> triangle;
+        vector<int> a(n);
+        
+        for (int i = 0; i < n; i++) cin >> a[i];
+        triangle.push_back(a); 
+
+        while (triangle.back().size() > 1) {
+            vector<int> prev = triangle.back();
+            vector<int> curr;
+            for (int i = 0; i < prev.size() - 1; i++) {
+                curr.push_back(prev[i] + prev[i + 1]);
+            }
+            triangle.push_back(curr);
+        }
+
+        for (int i = triangle.size() - 1; i >= 0; i--) {
+            cout << "[";
+            for (int j = 0; j < triangle[i].size(); j++) {
+                if (j > 0) cout << " ";
+                cout << triangle[i][j];
+            }
+            cout << "] ";
+
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
