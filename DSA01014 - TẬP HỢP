@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, k, s, res;
+vector<int> a; 
+
+void Try(int i, int sum = 0){
+	if(i > k){
+		if(sum == s) res++;
+		return;
+	}
+	
+	for(int j = a[i - 1] + 1; j <= n; j++){
+		a.push_back(j);
+		Try(i + 1, sum + j);
+		a.pop_back();
+	}
+}
+
+int main(){
+	while(1){
+		res = 0;
+		cin >> n >> k >> s;
+		if(n == 0 && k == 0 && s == 0) return 0;
+		a.push_back(0);
+        Try(1);
+        cout << res << endl;
+        a.clear();
+	}
+}
